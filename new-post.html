@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Blog - Blog Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: azure; 
+      color: black; /* Text color for visibility */
+      text-align: center; 
+    }
+
+    header {
+      background-image: url(img5.jfif);
+      padding: 20px;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+      background-image: url(img4.jpg);
+      border-radius: 10px;
+      opacity: 0.9; /* Slightly transparent background */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+    .fade-out {
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .fade-out.removing {
+      opacity: 0;
+    }
+
+    .post {                                /* after adding post*/
+      margin-bottom: 20px;
+      padding: 30px;
+      border: 10px solid lightyellow;
+      border-radius: 10px;
+      background-color:mistyrose;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+      width: 80%; 
+     
+    }
+
+    .post:hover {
+      transform: scale(1.02);
+    }
+
+    .keyword {
+      font-size: 1.5em; 
+      font-weight: bold; 
+      margin-bottom: 5px; /* Space below keywords */
+    }
+
+    .post h3 {
+      font-size: 1.2em; 
+      margin: 10px 0;    /* Space around title */
+    }
+
+    .post p {
+      font-size: 1em; 
+      margin: 15px 0; /* Space around content */
+    }
+
+    .delete-button {
+      background-color: black; 
+      color: white; 
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      position: absolute; /* Position the delete button */
+      top: 15px; 
+      right: 15px; 
+    }
+
+    .delete-button:hover {
+      background-color: darkgray; 
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Create a New Post</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="profile.html">About Us</a>
+      <a href="new-post.html">Create Blog</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </header>
+  
+  <main>
+    <!-- Latest Blog Post Section -->
+    <section id="latest-posts">
+      <h2>Latest Posts</h2>
+      <div id="posts-container">
+        <!-- Existing posts will be added here -->
+      </div>
+    </section>
+    
+    <!-- New Post Form -->
+    <form id="new-post-form" style="width: 100%; max-width: 600px;">
+      <div>
+        <div class="keyword">Title:</div>
+        <input type="text" id="title" name="title" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+      </div>
+      <div>
+        <div class="keyword">Caption:</div>
+        <textarea id="content" name="content" required style="width: 100%; padding: 10px; margin-bottom: 10px;"></textarea>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+  
+  <footer>
+    <p>&copy; 2024 My Blog</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('new-post-form');
+    const postsContainer = document.getElementById('posts-container');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); 
+      
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
+
+      // Create a new article element for the new post
+      const newPost = document.createElement('article');
+      newPost.classList.add('post', 'fade-out');
+      newPost.innerHTML = `
+        <h3>${title}</h3>
+        <p>${content}</p>
+        <button class="delete-button">Delete</button>
+      `;
+      
+      // Append the new post to the posts container
+      postsContainer.prepend(newPost);
+      form.reset();
+      const deleteButton = newPost.querySelector('.delete-button');
+      deleteButton.addEventListener('click', function() {
+        newPost.classList.add('removing');
+        setTimeout(() => {
+          newPost.remove();
+        }, 500); 
+      });
+    });
+  </script>
+</body>
+</html>
+
+

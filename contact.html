@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Me - Blog Platform</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: rgba(148, 190, 172, 0.932); 
+      color: black;
+      text-align: center;
+    }
+
+    header {
+      background: honeydew;
+      padding: 20px;
+    }
+
+    nav {
+      margin: 20px 0;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: black;
+    }
+
+    main {
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: 20px auto;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background: #4CAF50;
+      color: black;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .success-message {
+      margin-top: 20px;
+      color: black;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Contact Me</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="profile.html">About Us</a>
+      <a href="new-post.html">Create Blog</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </header>
+  <main>
+    <form id="contact-form">
+      <input type="text" id="name" name="name" placeholder="Name" required>
+      <input type="email" id="email" name="email" placeholder="Email" required>
+      <textarea id="message" name="message" placeholder="Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <div id="success-message" class="success-message" style="display:none;"></div>
+  </main>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const successMessageDiv = document.getElementById('success-message');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); 
+      
+      successMessageDiv.textContent = "Your message has been sent successfully!";
+      successMessageDiv.style.display = "block"; 
+      form.reset();
+    });
+  </script>
+</body>
+</html>
